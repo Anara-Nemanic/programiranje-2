@@ -1,0 +1,157 @@
+\documentclass[arhiv]{../izpit}
+\usepackage{fouriernc}
+\usepackage{xcolor}
+\usepackage{minted}
+
+
+\begin{document}
+
+\izpit{Programiranje II: poskusni izpit}{17.\ april 2024}{
+  Čas reševanja je 60 minut.
+  Veliko uspeha!
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\naloga[\tocke{10}]
+
+Za vsakega izmed spodnjih programov prikažite vse spremembe sklada in kopice, če poženemo funkcijo \mintinline{rust}{main}. Za vsako spremembo označite, po kateri vrstici v kodi se zgodi.
+
+\podnaloga
+\begin{minted}{rust}
+  fn f(a: i32, b: i32) -> i32 {
+    a * b
+  }
+  fn g(x: i32) -> i32 {
+    f(x, x + 1)
+  }
+  fn main() {
+    let m = 6;
+    let n = g(m);
+    println!("{n}")
+  }
+\end{minted}
+
+\podnaloga
+\begin{minted}{rust}
+  fn f(s: String) {
+    println!("{s}")
+  }
+  fn g(s: String) {
+    f(s)
+  }
+  fn main() {
+    let s2 = String::from("2");
+    let s1 = String::from("4");
+    if true {
+      println!("{s2}");
+    }
+    g(s1);
+  }
+\end{minted}
+
+\podnaloga
+\begin{minted}{rust}
+  fn f(s: &String) {
+    println!("{s}")
+  }
+  fn g(s: String) {
+    f(&s)
+  }
+  fn main() {
+    let s1 = String::from("4");
+    let s2 = String::from("2");
+    g(s1);
+    println!("{s2}");
+  }
+\end{minted}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\naloga[\tocke{10}]
+
+Definirajmo tip množic \mintinline{rust}{Set<T>}. Dopolnite signature spodnjih metod. Če v dani prostor ni treba dopisati ničesar, ga prečrtajte.
+
+\podnaloga
+\mintinline{rust}{fn contains(_____ self, x: ______) ________}, ki preveri, ali dana množica vsebuje element \mintinline{rust}{x}.
+
+\podnaloga
+\mintinline{rust}{fn power_set(_____ self) ________}, ki vrne potenčno množico dane množice.
+
+\podnaloga
+\mintinline{rust}{fn intersection(_____ self, other: ______) ________}, ki izračuna presek dveh množic.
+
+\podnaloga
+\mintinline{rust}{fn add(_____ self, x: ______) ________}, ki v obstoječo množico doda element \mintinline{rust}{x}.
+
+\podnaloga
+\mintinline{rust}{fn into_iter(_____ self) ________}, ki iz množice naredi iterator po njenih elementih.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\naloga[\tocke{30}]
+
+Za vsakega izmed spodnjih programov:
+\begin{enumerate}
+  \item razložite, zakaj in s kakšnim namenom Rust program zavrne;
+  \item program popravite tako, da bo veljaven in bo učinkovito dosegel prvotni namen.
+\end{enumerate}
+
+\podnaloga
+\begin{minted}{rust}
+fn main() {
+    let v = vec![1, 2, 3];
+    for x in v {
+      v.push(x);
+    }
+}
+\end{minted}
+
+\podnaloga
+\begin{minted}{rust}
+enum Drevo {
+    Prazno,
+    Sestavljeno(Drevo, u32, Drevo),
+}
+\end{minted}
+
+\podnaloga
+\begin{minted}{rust}
+fn daljsi_niz(s1: &str, s2: &str) -> &str {
+    if s1.len() > s2.len() {
+        return s1;
+    } else {
+        return s2;
+    }
+}
+\end{minted}
+
+\podnaloga
+
+\begin{minted}{rust}
+fn g(s1: &String, s2: &String) -> () {
+    /// Poljubna koda, da je tip funkcije ustrezen
+}
+
+fn main() {
+    let mut s1 = String::from("1");
+    g(&mut s1, &s1);
+}
+\end{minted}
+
+\podnaloga
+
+\begin{minted}{rust}
+fn vsebuje<T>(v: &Vec<T>, x : &T) -> bool {
+    for y in v {
+      if x == y {
+        return true
+      }
+    }
+    return false
+}
+\end{minted}
+
+\end{document}
